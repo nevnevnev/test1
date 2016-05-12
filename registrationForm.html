@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="app/regController.js"></script>
+	<script src="app/passwordMatch.js"></script>
+
+    <body>
+
+
+
+<form  ng-app="myApp" ng-controller="validateCtrl" class="about bs-callout bs-callout-primary" name="myForm" novalidate>
+
+     <h2>Registration form</h2>
+<p>
+  <input type="text" class="form-control" name="first" ng-model="first" placeholder="First name" required>
+  <span style="color:red" ng-show="myForm.first.$dirty && myForm.first.$invalid">
+  <span ng-show="myForm.first.$error.required">Username is required.</span>
+  </span>
+</p>
+    
+<p>
+  <input type="text" class="form-control" name="family" ng-model="family" placeholder="Family name" required>
+  <span style="color:red" ng-show="myForm.family.$dirty && myForm.family.$invalid">
+  <span ng-show="myForm.family.$error.required">Username is required.</span>
+  </span>
+</p>
+
+<p>
+  <input type="text" class="form-control" name="user" ng-model="user" placeholder="User name" required>
+  <span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+  <span ng-show="myForm.user.$error.required">Username is required.</span>
+  </span>
+</p>
+    
+<p>
+    <h5>Gender</h5>
+    <input type="radio" ng-model="myVar" value="female"> Female
+    <input type="radio" ng-model="myVar" value="male"> Male
+    </p>
+
+<div ng-switch="myVar">
+  <div ng-switch-when="female">
+     <p>Welcome to the world of the women.</p><br>
+  </div>
+  <div ng-switch-when="male">
+     <p>Welcome to the world of the man</p><br>
+  </div>
+</div>
+        
+<p>
+  <input type="email" class="form-control" name="email" ng-model="email" placeholder="Email" required>
+  <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+  <span ng-show="myForm.email.$error.required">Email is required.</span>
+  <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+  </span>
+</p>
+
+<p>
+  <input type="address " class="form-control" name="address " ng-model="address " placeholder="Address" required>
+  <span style="color:red" ng-show="myForm.address .$dirty && myForm.address .$invalid">
+  <span ng-show="myForm.address .$error.required">Address is required.</span>
+  </span>
+</p>
+
+        
+  <p>      
+       <input type="password" id="password" class="form-control" name="password" placeholder="Password" ng-model="formData.password" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" required  />
+   <span style="color:red" ng-show="myForm.password.$error.required && myForm.password.$dirty">required</span>
+   <span style="color:red" ng-show="!myForm.password.$error.required && (myForm.password.$error.minlength || myForm.password.$error.maxlength) && myForm.password.$dirty">Passwords must be between 8 and 20 characters.</span>
+   <span style="color:red" ng-show="!myForm.password.$error.required && !myForm.password.$error.minlength && !myForm.password.$error.maxlength && myForm.password.$error.pattern && myForm.password.$dirty">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+        </p>      
+
+<p>
+       <input type="password" id="password_c" class="form-control" name="password_c" placeholder="Confirm Password"  ng-model="formData.password_c" valid-password-c required  />
+   <span style="color:red" ng-show="myForm.password_c.$error.required && myForm.password_c.$dirty">Please confirm your password.</span>
+   <span style="color:red" ng-show="!myForm.password_c.$error.required && myForm.password_c.$error.noMatch && myForm.password.$dirty">Passwords do not match.</span>
+        </p>
+        
+        
+        
+<p>
+  <input class="button btn btn-primary" type="submit"     
+  ng-disabled="myForm.user.$dirty && myForm.user.$invalid ||
+  myForm.email.$dirty && myForm.email.$invalid || myForm.first.$dirty && myForm.first.$invalid || myForm.family.$dirty && myForm.family.$invalid || myForm.address .$dirty && myForm.address .$invalid || myForm.password.$error.required && myForm.password.$dirty || !myForm.password.$error.required && (myForm.password.$error.minlength || myForm.password.$error.maxlength) && myForm.password.$dirty || !myForm.password.$error.required && !myForm.password.$error.minlength && !myForm.password.$error.maxlength && myForm.password.$error.pattern && myForm.password.$dirty || myForm.password_c.$error.required && myForm.password_c.$dirty || !myForm.password_c.$error.required && myForm.password_c.$error.noMatch && myForm.password.$dirty ">
+</p>  
+  
+</form>
+   
+    
+</body>
+</html>
